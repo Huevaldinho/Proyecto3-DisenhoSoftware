@@ -27,6 +27,9 @@ import ListaRespuestas from "../components/profesores/ListaRespuestas";
 import AgregarComentario from "../components/profesores/AgregarComentario";
 import AgregarRespuesta from "../components/profesores/AgregarRespuesta";
 import MenuSuperUsuario from "../pages/superUsuario/MenuSuperUsuario";
+//Chats
+import ListaChats from "../components/compartidos/Chats/FilaChats"
+
 function Router() {
   return (
     <BrowserRouter>
@@ -78,7 +81,8 @@ function Router() {
 
         {/*Routes EXCEL */}
         <Route path="/cargarExcel" element={<CargarExcel />} />
-
+        {/*Routes Chats */}
+        <Route path="/chats" element={<ListaChats />} />
         {/*Rutas NO ENCONTRADAS */}
         <Route path="*" element={<NotFound />} />
       </Routes>

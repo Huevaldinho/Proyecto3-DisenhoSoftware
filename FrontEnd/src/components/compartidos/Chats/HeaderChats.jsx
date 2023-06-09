@@ -1,6 +1,6 @@
 import React from "react";
 
-function HeaderComentarios(props) {
+function HeaderChats(props) {
   return (
     <thead className="bg-gray-50 text-center">
       <tr className="text-center">
@@ -21,4 +21,4 @@ function HeaderComentarios(props) {
   );
 }
 
-export default HeaderComentarios;
+export default HeaderChats;

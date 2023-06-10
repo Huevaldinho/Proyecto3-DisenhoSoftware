@@ -13,6 +13,8 @@ import planRoutes from "./src/routes/plan.routes.js"
 import {systemDB}  from "./src/database/connection.js";
 import asistenteRoutes from "./src/routes/asistente.routes.js"
 import respuestaRoutes from "./src/routes/respuesta.routes.js"
+import chatRoutes from "./src/routes/chat.routes.js"
+import mensajesRoutes from "./src/routes/mensajeria.routes.js"
 /*import readXlsxFile from "read-excel-file/node";
 import fs from "fs";*/
 
@@ -50,7 +52,9 @@ app.use(actividadesRoutes); //rutas relacionadas a las actividades
 app.use(equipoRoutes);
 app.use(comentarioRoutes); //rutas relacionadas a los comentarios
 app.use(asistenteRoutes); //rutas relacionadas a los asistentes
-app.use(respuestaRoutes);
+app.use(respuestaRoutes); //rutas relacionadas a las respuestas
+app.use(chatRoutes);
+app.use(mensajesRoutes);
 
 /*readXlsxFile(fs.createReadStream('estudiantes.xlsx')).then((rows) => {
     console.log(rows);

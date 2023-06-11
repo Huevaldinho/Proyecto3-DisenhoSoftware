@@ -23,4 +23,28 @@ export default class SistemaMensajeria {
             return null;
         }
     }
+
+    async crearChat(creadorChat) {
+        try {
+            const response = await fetch(`${API_URL}/chat/`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    _id: creadorChat._id,
+                    nombre1: creadorChat.nombre1,
+                    nombre2: creadorChat.nombre2,
+                    apellido1: creadorChat.apellido1,
+                    apellido2: creadorChat.apellido2
+                })
+            });
+            let data = await response.json(); // Convertir datos a formato JSON
+            console.log("SistemaMensajeria crearChat retorna :", data)
+            return data;
+        } catch (error) {
+            console.error('Error en SistemaMensajeria, en metodo crearChat: ', error);
+            return null;
+        }
+    }
 }

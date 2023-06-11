@@ -2,7 +2,6 @@ import AdminActividades from "./Administradores/AdminActividades";
 import AdminArchivos from "./Administradores/AdminArchivos";
 import AdminProfesores from "./Administradores/AdminProfesores";
 import AdminEstudiantes from "./Administradores/AdminEstudiantes";
-import AdminChats from "./Administradores/AdminChats";
 import Configuracion from "./Administradores/Configuracion"
 
 class MainController {
@@ -19,7 +18,6 @@ class MainController {
     this.adminEstudiantes = new AdminEstudiantes();
     this.adminProfesores = new AdminProfesores();
     this.adminArchivos = new AdminArchivos();
-    this.adminChats = new AdminChats();
     this.configuracion = new Configuracion();
   }
 

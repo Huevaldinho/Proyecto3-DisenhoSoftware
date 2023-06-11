@@ -37,13 +37,11 @@ const MainControllerContextProvider = ({ children }) => {
 
   /**
    * Metodo para crear un chat.
-   * @param {Array con miembros, miembro tiene la forma de Usuario} miembros.
+   * @param {Array con miembro creador del chat, miembro tiene la forma de Usuario} miembros.
    */
-  const crearChat = async (miembros) => {
-    //TODO
-    //miembros solo va a tener a la persona que cree el chat.
-    //Llamar a  sistemaMensajeria.
-    //Llamar a obtenerChats despues para actualizar el array de chats.
+  const crearChat = async (creadorChat) => {
+    let chat = await sistemaMensajeria.crearChat(creadorChat);
+    return chat;
   };
 
   /**
@@ -339,7 +337,7 @@ const MainControllerContextProvider = ({ children }) => {
         modificarInformacionEstudiante,
         proximaActividad,
         obtenerChats,
-        chats
+        chats,
       }}
     >
       {children}

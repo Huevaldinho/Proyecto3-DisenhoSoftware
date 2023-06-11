@@ -32,7 +32,6 @@ const MainControllerContextProvider = ({ children }) => {
   const obtenerChats = async (idMiembro) => {
     let chats = await sistemaMensajeria.obtenerChats(idMiembro);
     setChats(chats);
-    console.log("Chats en useState:",chats)
     return chats;
   };
 

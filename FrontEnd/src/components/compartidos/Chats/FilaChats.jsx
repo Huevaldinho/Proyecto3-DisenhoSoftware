@@ -19,7 +19,7 @@ function FilaChats({ chat, index }) {
       : "bg-gray-100 hover:bg-blue-300";
   return (
     <tr onDoubleClick={handleClick} className={styleFilas}>
-      <td className={styleRow}>{chat.id}</td>
+      <td className={styleRow}>{chat._id}</td>
       <td className={styleRow}>{chat.integrantes}</td>
     </tr>
   );

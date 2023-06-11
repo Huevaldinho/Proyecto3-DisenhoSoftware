@@ -25,9 +25,11 @@ function Login() {
         }
         case Role.ESTUDIANTE: {
           navigate("/menuEstudiantes");
+          break;
         }
         case Role.SUPERUSUARIO: {
           navigate("/menuSuperUsuario");
+          break;
         }
       }
     } else {

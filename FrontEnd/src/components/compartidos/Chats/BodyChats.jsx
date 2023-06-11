@@ -1,7 +1,6 @@
 import FilaChats from "./FilaChats";
 
 function BodyChats({ chats }) {
-  console.log("Chats en body:",chats)
   if (chats.length == 0)
     return <tbody className="bg-white divide-y divide-gray-200"></tbody>;
   return (

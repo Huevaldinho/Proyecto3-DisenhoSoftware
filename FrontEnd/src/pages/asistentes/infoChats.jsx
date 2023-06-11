@@ -3,13 +3,12 @@ import { MainControllerContext } from "../../contexts/MainControllerContext";
 import { useContext, useEffect,  } from "react";
 import TablaChats from "../../components/compartidos/Chats/TablaChats"
 function infoChats(props) {
-  const { chats, consultarChats } = useContext(
+  const { chats, obtenerChats,usuario } = useContext(
     MainControllerContext
   );
   const updateState = () => {
     setTimeout(() => {
-      consultarChats();
-      
+      obtenerChats(usuario._id);
     }, 1000);
   };
   // Efecto que actualiza el estado de myState después de que el componente ha sido montado
@@ -17,6 +16,8 @@ function infoChats(props) {
     updateState();
   }, []);
   
+  console.log("Chats:",chats)
+
   if (chats.length == 0) {
     return (
       <p className="text-center font-semibold text-5xl m-auto">

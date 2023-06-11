@@ -3,7 +3,6 @@ import React from "react";
 import HeaderChats from "./HeaderChats";
 import BodyChats from "./BodyChats";
 function TablaChats({ chats }) {
-  console.log("Print de chats en Tabla Chats",chats)
   if (chats.length == 0) {
     return (
       <div className="text-center font-bold text-4xl text-red-500">

@@ -4,7 +4,8 @@ import { useNavigate } from "react-router-dom";
 
 function FilaChats({ chat, index }) {
   const navigate = useNavigate();
-  if (chat == {}) return <tr></tr>;
+  console.log("CHAT EN FILA:",chat)
+  if (chat===undefined || chat == {}) return <tr></tr>;
 
   const handleClick = (e) => {
     e.preventDefault();

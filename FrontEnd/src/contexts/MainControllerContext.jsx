@@ -1,10 +1,14 @@
-import React, { createContext, useState, useEffect } from "react";
+import React, { createContext, useState } from "react";
+//Controlador principal.
 import MainController from "../services/mainController";
-
+//Sistema mensajeria.
+import SistemaMensajeria from "../services/sistemaMensajeria/sistemaMensajeria";
 const MainControllerContext = createContext();
 
 const MainControllerContextProvider = ({ children }) => {
   const mainController = new MainController();
+  const sistemaMensajeria = new SistemaMensajeria();
+
   //Declarar state para poder mostrarlos en las tablas.
   let [estudiantes, setEstudiantes] = useState([]);
   //Declara state para el inicio de sesion
@@ -17,8 +21,55 @@ const MainControllerContextProvider = ({ children }) => {
   let [comentarios, setComentarios] = useState([]);
   //Respuesta a comentario
   let [respuestas, setRespuestas] = useState([]);
-  //*Chats
+  //Chats
   let [chats, setChats] = useState([]);
+
+  //*SISTEMA MENSAJERIA
+  /**
+   * Metodo para obtener los chats de un usuario.
+   * @param {idMiembro:String} idMiembro
+   */
+  const obtenerChats = async (idMiembro) => {
+    let chats = await sistemaMensajeria.obtenerChats(idMiembro);
+    setChats(chats);
+    return chats;
+  };
+
+  /**
+   * Metodo para crear un chat.
+   * @param {Array con miembro creador del chat, miembro tiene la forma de Usuario} miembros.
+   */
+  const crearChat = async (creadorChat) => {
+    let chat = await sistemaMensajeria.crearChat(creadorChat);
+    return chat;
+  };
+
+  /**
+   * Metodo para aggregar miembro a un chat.
+   * @param {JSON con forma de Usuario} usuario
+   * @param {JSON con forma de Chat} chat
+   */
+  const agregarMiembroAchat = async (usuario, chat) => {
+    //TODO
+    //Llamar a sistemaMensajeria
+  };
+  /**
+   * Metodo para eliminar a un miembro de un chat.
+   * @param {JSON con forma de Usuario} usuario
+   * @param {JSON con forma de Chat} chat
+   */
+  const eliminarMiembroDelChat = async (usuario, chat) => {
+    //TODO
+    //Llamar a sistemaMensajeria
+  };
+  /**
+   * Metodo para enviar mensajes.
+   * @param {String} mensaje
+   */
+  const enviarMensaje = async (mensaje) => {
+    //Llamar a sistemaMensajeria.
+  };
+
   //*SUPER USUARIO
   /**
    * Metodo para asignar asistente
@@ -285,8 +336,9 @@ const MainControllerContextProvider = ({ children }) => {
         ordenarEstudiantesPorCampus,
         modificarInformacionEstudiante,
         proximaActividad,
+        obtenerChats,
         chats,
-        consultarChats,
+        crearChat
       }}
     >
       {children}

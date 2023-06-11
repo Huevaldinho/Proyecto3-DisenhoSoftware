@@ -33,6 +33,10 @@ function MenuAsistentes() {
     e.preventDefault();
     navigate("/informacionEstudiantesProfesores");
   };
+  const handleChats = (e) => {
+    e.preventDefault();
+    navigate("/infoChats");
+  };
 
   const handleSalir = (e) => {
     e.preventDefault();
@@ -75,6 +79,11 @@ function MenuAsistentes() {
         <div id="containerBotonInformacionEstudiantes" className="p-5 m-3">
           <button className={estiloBotones} onClick={handleActividadMasProxima}>
             Proxima actividad
+          </button>
+        </div>
+        <div id="containerBotonChats" className="p-5 m-3">
+          <button className={estiloBotones} onClick={handleChats}>
+            Chats
           </button>
         </div>
         <div className="text-center">

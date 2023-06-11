@@ -21,7 +21,12 @@ function MenuProfesoresGuia() {
     e.preventDefault();
     navigate("/informacionEstudiantesProfesores");
   };
+  
 
+  const handleChats = (e) => {
+    e.preventDefault();
+    navigate("/infoChats");
+  };
   const handleSalir = (e) => {
     e.preventDefault();
     navigate("/login");
@@ -57,6 +62,14 @@ function MenuProfesoresGuia() {
             onClick={handleInformacionEstudiantes}
           >
             Información Estudiantes
+          </button>
+        </div>
+        <div id="containerBotonChats" className="p-5 m-3">
+          <button
+            className={estiloBotones}
+            onClick={handleChats}
+          >
+            Chats
           </button>
         </div>
         <div className="text-center">

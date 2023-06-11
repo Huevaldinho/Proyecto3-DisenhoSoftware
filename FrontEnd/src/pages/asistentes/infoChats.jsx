@@ -17,7 +17,7 @@ function infoChats(props) {
     updateState();
   }, []);
   
-  if (chats.length == 0) {
+  if (chats.length === 0) {
     return (
       <p className="text-center font-semibold text-5xl m-auto">
         Cargando chats

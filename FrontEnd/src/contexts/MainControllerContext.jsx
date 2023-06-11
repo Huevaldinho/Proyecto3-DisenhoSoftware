@@ -272,7 +272,12 @@ const MainControllerContextProvider = ({ children }) => {
     }
     return null; //Plan de trabajo no ha cargado.
   };
-
+  //*Chats
+  const consultarChats = async () => {
+    let data = await mainController.consultarChats();
+    setChats(data); //guarda datos de plan de trabajo
+    return data;
+  };
   //*ORDENAMIENTOS
   const ordenarEstudiantesPorCarnet = () => {
     const estudiantesOrdenados = [...estudiantes].sort(

@@ -2,6 +2,7 @@ import AdminActividades from "./Administradores/AdminActividades";
 import AdminArchivos from "./Administradores/AdminArchivos";
 import AdminProfesores from "./Administradores/AdminProfesores";
 import AdminEstudiantes from "./Administradores/AdminEstudiantes";
+import AdminChats from "./Administradores/AdminChats";
 import Configuracion from "./Administradores/Configuracion"
 
 class MainController {
@@ -10,6 +11,7 @@ class MainController {
   adminEstudiantes = null;
   adminProfesores = null;
   adminArchivos = null;
+  adminChats = null;
   configuracion = null;
   //*Constructores
   constructor() {
@@ -17,6 +19,7 @@ class MainController {
     this.adminEstudiantes = new AdminEstudiantes();
     this.adminProfesores = new AdminProfesores();
     this.adminArchivos = new AdminArchivos();
+    this.adminChats = new AdminChats();
     this.configuracion = new Configuracion();
   }
 
@@ -158,6 +161,10 @@ class MainController {
   }
   async modificarInformacionEstudiante(dtoEstudiante) {
     return await this.adminEstudiantes.modificarInformacionEstudiante(dtoEstudiante);
+  }
+  //*Chats
+  async consultarChats() {
+    return await this.adminChats.consultarChats();
   }
 }
 

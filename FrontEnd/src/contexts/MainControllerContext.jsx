@@ -30,13 +30,11 @@ const MainControllerContextProvider = ({ children }) => {
    * @param {idMiembro:String} idMiembro
    */
   const obtenerChats = async (idMiembro) => {
-    //El idMiembro siempre va a ser el id del usuario loggeado.
-    //Llamar sistemaMensajeria.
     let chats = await sistemaMensajeria.obtenerChats(idMiembro);
     setChats(chats);
     return chats;
   };
-  
+
   /**
    * Metodo para crear un chat.
    * @param {Array con miembros, miembro tiene la forma de Usuario} miembros.
@@ -335,6 +333,8 @@ const MainControllerContextProvider = ({ children }) => {
         ordenarEstudiantesPorCampus,
         modificarInformacionEstudiante,
         proximaActividad,
+        obtenerChats,
+        chats
       }}
     >
       {children}

@@ -49,7 +49,7 @@ export async function insertarChat(DTOMensajeria){
         });
         let nuevoChat = new Chat({
             //crear el nuevo objeto para enviarlo a la db
-            nombre: DTOMensajeria.nombre,
+            nombre: DTOMensajeria.nombreChat,
             miembros: [creador],
             mensajes: []
           });

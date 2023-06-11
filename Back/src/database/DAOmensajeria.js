@@ -2,6 +2,7 @@ import { ObjectId } from "mongodb";
 import mongoose from "mongoose";
 
 const chatSchema = new mongoose.Schema({
+    nombre: { type: String, required: true},
     miembros: { type: Array, required: true },
     mensajes: { type: Array, required: true },
 });
@@ -48,6 +49,7 @@ export async function insertarChat(DTOMensajeria){
         });
         let nuevoChat = new Chat({
             //crear el nuevo objeto para enviarlo a la db
+            nombre: DTOMensajeria.nombre,
             miembros: [creador],
             mensajes: []
           });

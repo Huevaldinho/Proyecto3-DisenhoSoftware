@@ -17,7 +17,8 @@ const MainControllerContextProvider = ({ children }) => {
   let [comentarios, setComentarios] = useState([]);
   //Respuesta a comentario
   let [respuestas, setRespuestas] = useState([]);
-
+  //*Chats
+  let [chats, setChats] = useState([]);
   //*SUPER USUARIO
   /**
    * Metodo para asignar asistente
@@ -218,7 +219,12 @@ const MainControllerContextProvider = ({ children }) => {
     }
     return null; //Plan de trabajo no ha cargado.
   };
-
+  //*Chats
+  const consultarChats = async () => {
+    let data = await mainController.consultarChats();
+    setChats(data); //guarda datos de plan de trabajo
+    return data;
+  };
   //*ORDENAMIENTOS
   const ordenarEstudiantesPorCarnet = () => {
     const estudiantesOrdenados = [...estudiantes].sort(
@@ -279,6 +285,8 @@ const MainControllerContextProvider = ({ children }) => {
         ordenarEstudiantesPorCampus,
         modificarInformacionEstudiante,
         proximaActividad,
+        chats,
+        consultarChats,
       }}
     >
       {children}

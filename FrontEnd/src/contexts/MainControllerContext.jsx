@@ -338,6 +338,7 @@ const MainControllerContextProvider = ({ children }) => {
         proximaActividad,
         obtenerChats,
         chats,
+        crearChat
       }}
     >
       {children}

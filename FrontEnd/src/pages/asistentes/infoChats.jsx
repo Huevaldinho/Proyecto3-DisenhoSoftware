@@ -19,6 +19,7 @@ function infoChats(props) {
         setUsuario(storedUser);
       }
       obtenerChats(storedUser._id);
+      console.log("Pide chats")
     }, 1000);
   };
   // Efecto que actualiza el estado de myState después de que el componente ha sido montado

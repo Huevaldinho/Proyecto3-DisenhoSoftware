@@ -9,7 +9,7 @@ function FilaChats({ chat, index }) {
   const handleClick = (e) => {
     e.preventDefault();
     navigate("/detallesChat", {
-      state: { mensajes: chat.mensajes }, // Pasar chat.mensajes como parte del estado
+      state: { mensajes: chat.mensajes,chat:chat}, // Pasar chat.mensajes como parte del estado
     });
   };
   const styleRow =
@@ -20,7 +20,6 @@ function FilaChats({ chat, index }) {
       : "bg-gray-100 hover:bg-blue-300";
   return (
     <tr onDoubleClick={handleClick} className={styleFilas}>
-      <td className={styleRow}>{chat._id}</td>
       <td className={styleRow}>{chat.nombre}</td>
     </tr>
   );

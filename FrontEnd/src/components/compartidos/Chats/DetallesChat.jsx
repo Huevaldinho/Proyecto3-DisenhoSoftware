@@ -41,12 +41,12 @@ function DetallesChat() {
     );
   }
   return (
-    <div className="flex flex-col gap-4">
+    <div className="flex flex-col gap-4 text-center">
       {mensajes.map((mensaje, index) => (
         <div key={index} className="bg-gray-200 rounded p-4">
           <p className="font-bold mb-2">Mensaje de: {mensaje.emisor.nombre1}</p>
-          <p>{mensaje.mensaje}</p>
-          <p className="text-decoration-line: underline ">Fecha y hora: {mensaje.fechaHora}</p>
+          <p className=" text-blue-400">{mensaje.mensaje}</p>
+          <p className="text-decoration-line: underline">Fecha y hora: {mensaje.fechaHora}</p>
         </div>
       ))}
 

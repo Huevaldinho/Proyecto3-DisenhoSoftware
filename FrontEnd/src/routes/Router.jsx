@@ -30,6 +30,7 @@ import MenuSuperUsuario from "../pages/superUsuario/MenuSuperUsuario";
 //Chats
 import ListaChats from "../components/compartidos/Chats/FilaChats"
 import InfoChats from "../pages/asistentes/infoChats"
+import DetallesChat from "../components/compartidos/Chats/DetallesChat";
 function Router() {
   return (
     <BrowserRouter>
@@ -84,6 +85,7 @@ function Router() {
         {/*Routes Chats */}
         <Route path="/chats" element={<ListaChats />} />
         <Route path="/infoChats" element={< InfoChats />} />
+        <Route path="/detallesChat" element={< DetallesChat />} />
         {/*Rutas NO ENCONTRADAS */}
         <Route path="*" element={<NotFound />} />
       </Routes>

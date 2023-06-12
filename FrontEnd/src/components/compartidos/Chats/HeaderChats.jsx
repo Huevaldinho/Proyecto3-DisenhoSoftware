@@ -14,7 +14,7 @@ function HeaderChats(props) {
           scope="col"
           className="px-6 py-3 text-center text-xs font-medium text-gray-500 uppercase tracking-wider"
         >
-          Integrantes
+          Nombre del chat
         </th>
       </tr>
     </thead>

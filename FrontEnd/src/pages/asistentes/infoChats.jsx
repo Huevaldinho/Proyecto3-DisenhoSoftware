@@ -25,8 +25,6 @@ function infoChats(props) {
   useEffect(() => {
     updateState();
   }, []);
-  
-  if (chats.length === 0) {
   if (storedUser == null) return <p>Cargando</p>;
 
 
@@ -54,7 +52,7 @@ function infoChats(props) {
       </>
     );
   }
-
+  console.log("Paso a llamar a Tab")
   return (
     <div className="container m-auto ">
       <div className="text-center" id="nombrePlanConteiner">
@@ -77,5 +75,6 @@ function infoChats(props) {
     </div>
   );
 }
+
 
 export default infoChats;

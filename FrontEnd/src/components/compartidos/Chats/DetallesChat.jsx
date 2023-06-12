@@ -1,35 +1,54 @@
 import React, { useState, useContext, useEffect } from "react";
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import { MainControllerContext } from "../../../contexts/MainControllerContext";
 
 function DetallesChat() {
-  const { usuario, setUsuario, enviarMensaje, chats } = useContext(
-    MainControllerContext
-  );
+  const { usuario, setUsuario, enviarMensaje, chats, obtenerChats } =
+    useContext(MainControllerContext);
 
   const location = useLocation();
-  const mensajes =
-    location.state && location.state.mensajes ? location.state.mensajes : [];
+  const navigate = useNavigate();
   const chat = location.state.chat;
   const [nuevoMensaje, setNuevoMensaje] = useState("");
+  let mensajes;
+
+  for (let i = 0; i < chats.length; i++) {
+    if (chats[i]._id === chat._id) {
+      mensajes = chats[i].mensajes;
+      break;
+    }
+  }
 
   let storedUser = usuario;
   const updateState = () => {
-    setTimeout(() => {
-      storedUser = JSON.parse(localStorage.getItem("usuario"));
-      try {
-        JSON.parse(storedUser);
-      } catch (error) {
-        setUsuario(storedUser);
-      }
-    }, 1000);
+    storedUser = JSON.parse(localStorage.getItem("usuario"));
+    try {
+      JSON.parse(storedUser);
+    } catch (error) {
+      setUsuario(storedUser);
+    }
   };
 
   useEffect(() => {
-    updateState();
+    const interval = setInterval(() => {
+      updateState();
+    }, 1000);
+    return () => {
+      clearInterval(interval);
+    };
   }, []);
 
   if (storedUser == null) return <p>Cargando</p>;
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      obtenerChats(storedUser._id); //Actualiza los chats cada 4 segundos.
+    }, 1000);
+
+    return () => {
+      clearInterval(interval);
+    };
+  }, [chats, storedUser._id]);
 
   const handleChange = (event) => {
     setNuevoMensaje(event.target.value);
@@ -91,26 +110,20 @@ function DetallesChat() {
       </>
     );
   }
+  let mensajesAlreves = [];
+  for (let i = mensajes.length - 1; i >= 0; i--) {
+    mensajesAlreves.push(mensajes[i]);
+  }
   return (
     <div className="flex flex-col gap-4">
       <p className="text-center font-bold text-5xl p-3 m-2">{chat.nombre}</p>
-      {mensajes.map((mensaje, index) => (
-        <div key={index} className="bg-gray-200 rounded p-4">
-          <p className="font-bold mb-2">Mensaje de: {mensaje.emisor.nombre1}</p>
-          <p>{mensaje.mensaje}</p>
-          <p className="text-decoration-line: underline ">
-            Fecha y hora: {mensaje.fechaHora}
-          </p>
-        </div>
-      ))}
-
-      <form onSubmit={handleSubmit}>
+      <form className="mb-5" onSubmit={handleSubmit}>
         <input
           type="text"
           value={nuevoMensaje}
           onChange={handleChange}
           placeholder="Escribe tu mensaje..."
-          className="border border-gray-300 p-2 rounded"
+          className="border border-gray-300 p-2 rounded m-4"
         />
         <button
           type="submit"
@@ -119,6 +132,15 @@ function DetallesChat() {
           Enviar
         </button>
       </form>
+      {mensajesAlreves.map((mensaje, index) => (
+        <div key={index} className="bg-gray-200 rounded p-3 hover:bg-blue-500">
+          <p className="font-bold mb-2">Mensaje de: {mensaje.emisor.nombre1}</p>
+          <p>{mensaje.mensaje}</p>
+          <p className="text-decoration-line: underline ">
+            Fecha y hora: {mensaje.fechaHora}
+          </p>
+        </div>
+      ))}
     </div>
   );
 }

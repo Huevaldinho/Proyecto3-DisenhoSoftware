@@ -49,6 +49,7 @@ export default class SistemaMensajeria {
     }
     async enviarMensaje(mensaje, emisor, idChat, fechaHora) {
         try {
+            console.log("Emisor:",emisor)
             const response = await fetch(`${API_URL}/mensaje/`, {
                 method: 'POST',
                 headers: {
@@ -59,7 +60,7 @@ export default class SistemaMensajeria {
                     mensaje: mensaje,
                     fechaHora: fechaHora,
                     _id: emisor._id,
-                    nombre1: emisor.nombre1,
+                    nombre1: emisor.nombre,
                     nombre2: emisor.nombre2,
                     apellido1: emisor.apellido1,
                     apellido2: emisor.apellido2

@@ -122,8 +122,6 @@ export const postNotificacionDB = async (DTONotificacion) => {
         ({ tipoUsuario, _id, estado }) => ({ tipoUsuario, _id, estado:"NO_LEIDA" })
       );
     }
-
-    console.log(receptoresReducidos);
     
     // Crear la nueva instancia de Notificacion con los campos reducidos
     let nuevaNotificacion = new Notificacion({

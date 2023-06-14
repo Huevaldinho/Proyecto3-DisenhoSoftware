@@ -3,12 +3,13 @@ import React, { createContext, useState } from "react";
 import MainController from "../services/mainController";
 //Sistema mensajeria.
 import SistemaMensajeria from "../services/sistemaMensajeria/sistemaMensajeria";
+import SistemaNotificaciones from "../services/SistemaNotificaciones/SistemaNotificaciones";
 const MainControllerContext = createContext();
 
 const MainControllerContextProvider = ({ children }) => {
   const mainController = new MainController();
   const sistemaMensajeria = new SistemaMensajeria();
-
+  const sistemaNotificaciones = new SistemaNotificaciones();
   //Declarar state para poder mostrarlos en las tablas.
   let [estudiantes, setEstudiantes] = useState([]);
   //Declara state para el inicio de sesion
@@ -23,7 +24,8 @@ const MainControllerContextProvider = ({ children }) => {
   let [respuestas, setRespuestas] = useState([]);
   //Chats
   let [chats, setChats] = useState([]);
-
+  //Notificaciones
+  let [notificaciones, setNotificaciones] = useState([]);
   //*SISTEMA MENSAJERIA
   /**
    * Metodo para obtener los chats de un usuario.
@@ -34,7 +36,12 @@ const MainControllerContextProvider = ({ children }) => {
     setChats(chats);
     return chats;
   };
-
+  //*Sistema de Notificaciones
+  const obtenerNotificaciones = async () => {
+    let notificaciones = await sistemaNotificaciones.obtenerNotificaciones();
+    setNotificaciones(notificaciones)
+    return notificaciones;
+  };
   /**
    * Metodo para crear un chat.
    * @param {Array con miembro creador del chat, miembro tiene la forma de Usuario} miembros.
@@ -347,6 +354,8 @@ const MainControllerContextProvider = ({ children }) => {
         chats,
         crearChat,
         enviarMensaje,
+        notificaciones,
+        obtenerNotificaciones,
       }}
     >
       {children}

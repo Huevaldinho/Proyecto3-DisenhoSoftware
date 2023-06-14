@@ -1,7 +1,7 @@
 import { ObjectId } from "mongodb";
 import mongoose from "mongoose";
-import { getUsuariosBloqueadosEstudianteDB } from "../database/DAOEstudiante.js"; // Todos los estudiantes
-import { getUsuariosBloqueadosProfesorDB } from "../database/DAOProfesor.js"; // Todos los estudiantes
+import { getEstudiantesMongo, getUsuariosBloqueadosEstudianteDB } from "../database/DAOEstudiante.js"; // Todos los estudiantes
+import { getProfesoresMongo, getUsuariosBloqueadosProfesorDB } from "../database/DAOProfesor.js"; // Todos los estudiantes
 
 const notificacionSchema = new mongoose.Schema({
   //Schema que se guardará en cada campo
@@ -106,10 +106,25 @@ export const postNotificacionDB = async (DTONotificacion) => {
       _id: emisor._id,
       nombre: emisor.nombre,
     };
-    const receptoresReducidos = receptores.map(
-      ({ tipoUsuario, _id, estado }) => ({ tipoUsuario, _id, estado })
-    );
 
+    // Distinción entre enviar a todas las personas, o receptores específicos
+    let receptoresReducidos = null;
+    if (DTONotificacion.receptores.length === 0) {
+      const estudiantes = await getEstudiantesMongo();
+      const profesores = await getProfesoresMongo();
+      receptoresReducidos = profesores
+        .map(({ _id }) => ({ tipoUsuario: 1, _id, estado: "NO_LEIDA" })) // Obtener info necesaria de Profesores
+        .concat(
+          estudiantes.map(({ _id }) => ({tipoUsuario: 2, _id, estado: "NO_LEIDA"})) // Obtener info necesaria de Estudiantes
+        );
+    } else {
+      receptoresReducidos = receptores.map(
+        ({ tipoUsuario, _id, estado }) => ({ tipoUsuario, _id, estado:"NO_LEIDA" })
+      );
+    }
+
+    console.log(receptoresReducidos);
+    
     // Crear la nueva instancia de Notificacion con los campos reducidos
     let nuevaNotificacion = new Notificacion({
       asunto,

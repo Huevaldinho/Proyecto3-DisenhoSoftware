@@ -8,25 +8,62 @@ function infoChats(props) {
     MainControllerContext
   );
   let navigate = useNavigate();
-
   let storedUser = usuario;
+
   const updateState = () => {
-    setTimeout(() => {
-      storedUser = JSON.parse(localStorage.getItem("usuario"));
-      try {
-        JSON.parse(storedUser);
-      } catch (error) {
-        setUsuario(storedUser);
-      }
-      obtenerChats(storedUser._id);
-    }, 1000);
+    storedUser = JSON.parse(localStorage.getItem("usuario"));
+    try {
+      JSON.parse(storedUser);
+    } catch (error) {
+      setUsuario(storedUser);//Almacena usuario
+    }
   };
-  // Efecto que actualiza el estado de myState después de que el componente ha sido montado
+
   useEffect(() => {
-    updateState();
+    const interval = setInterval(() => {
+      updateState();
+    }, 1000);
+
+    return () => {
+      clearInterval(interval);
+    };
   }, []);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      obtenerChats(storedUser._id); //Actualiza los chats cada 2 segundos.
+    }, 2000);
+
+    return () => {
+      clearInterval(interval);
+    };
+  }, [chats, storedUser._id]);
+
   if (storedUser == null) return <p>Cargando</p>;
 
+  const handleRetroceder = (e) => {
+    e.preventDefault();
+    if (storedUser.rol === "Asistente") navigate("/menuAsistentes");
+    else if (storedUser.rol === "Profesor") navigate("/menuProfesores");
+    else if (storedUser.rol === "Estudiante") navigate("/menuEstudiantes");
+  };
+  if (chats.length === 0) {
+    return (
+      <>
+        <p className="text-center text-5xl font-bold">
+          No hay chats disponibles
+        </p>
+        <div className="text-center">
+          <button
+            className=" bg-red-500 rounded-xl p-3 m-2"
+            onClick={handleRetroceder}
+          >
+            Regresar
+          </button>
+        </div>
+      </>
+    );
+  }
 
   const handleRegresar = (e) => {
     e.preventDefault();
@@ -38,7 +75,7 @@ function infoChats(props) {
   if (chats.length == 0) {
     return (
       <>
-        <div className="text-center font-bold text-4xl text-red-500">
+        <div className="text-center font-bold text-4xl text-red-500 p-2 m-2">
           No hay chats para mostrar.
         </div>
         <div className="text-center">
@@ -52,9 +89,8 @@ function infoChats(props) {
       </>
     );
   }
-  console.log("Paso a llamar a Tab")
   return (
-    <div className="container m-auto ">
+    <div className="container m-auto">
       <div className="text-center" id="nombrePlanConteiner">
         <h1 className="text-center font-bold text-5xl p-5">
           Chats Disponibles
@@ -75,6 +111,5 @@ function infoChats(props) {
     </div>
   );
 }
-
 
 export default infoChats;

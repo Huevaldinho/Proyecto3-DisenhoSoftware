@@ -63,11 +63,24 @@ const MainControllerContextProvider = ({ children }) => {
     //Llamar a sistemaMensajeria
   };
   /**
-   * Metodo para enviar mensajes.
+   * Metodo para enviar un mensaje.
    * @param {String} mensaje
+   * @param {Usuario} emisor
+   * @param {String} idChat
+   * @param {String} fechaHora
+   * @returns {JSON} Mensaje enviado
    */
-  const enviarMensaje = async (mensaje) => {
+  const enviarMensaje = async (mensaje, emisor, idChat, fechaHora) => {
     //Llamar a sistemaMensajeria.
+    let mensajeEnviado = await sistemaMensajeria.enviarMensaje(
+      mensaje,
+      emisor,
+      idChat,
+      fechaHora
+    );
+    obtenerChats(emisor._id);
+
+    return mensajeEnviado;
   };
 
   //*SUPER USUARIO
@@ -270,12 +283,6 @@ const MainControllerContextProvider = ({ children }) => {
     }
     return null; //Plan de trabajo no ha cargado.
   };
-  //*Chats
-  const consultarChats = async () => {
-    let data = await mainController.consultarChats();
-    setChats(data); //guarda datos de plan de trabajo
-    return data;
-  };
   //*ORDENAMIENTOS
   const ordenarEstudiantesPorCarnet = () => {
     const estudiantesOrdenados = [...estudiantes].sort(
@@ -338,7 +345,8 @@ const MainControllerContextProvider = ({ children }) => {
         proximaActividad,
         obtenerChats,
         chats,
-        crearChat
+        crearChat,
+        enviarMensaje,
       }}
     >
       {children}

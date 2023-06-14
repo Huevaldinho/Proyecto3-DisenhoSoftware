@@ -47,4 +47,31 @@ export default class SistemaMensajeria {
             return null;
         }
     }
+    async enviarMensaje(mensaje, emisor, idChat, fechaHora) {
+        try {
+            console.log("Emisor:",emisor)
+            const response = await fetch(`${API_URL}/mensaje/`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    idChat: idChat,
+                    mensaje: mensaje,
+                    fechaHora: fechaHora,
+                    _id: emisor._id,
+                    nombre1: emisor.nombre,
+                    nombre2: emisor.nombre2,
+                    apellido1: emisor.apellido1,
+                    apellido2: emisor.apellido2
+                })
+            });
+            let data = await response.json(); // Convertir datos a formato JSON
+            console.log("SistemaMensajeria crearChat retorna :", data)
+            return data;
+        } catch (error) {
+            console.error('Error en SistemaMensajeria, en metodo crearChat: ', error);
+            return null;
+        }
+    }
 }

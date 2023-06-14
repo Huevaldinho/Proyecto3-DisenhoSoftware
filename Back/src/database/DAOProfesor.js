@@ -156,6 +156,22 @@ export async function getProfesoresMongo() {
   }
 }
 
+//Metodo para hacer la consulta de un profesor
+export async function getUsuariosBloqueadosProfesorDB(id) {
+  try {
+    const data = await Profesor.find({ _id: id }).lean();
+    if (data.length > 0) {
+      const profesor = data[0];
+      const usuariosBloqueados = profesor.usuariosBloqueados;
+      return usuariosBloqueados;
+    } else {
+      return false;
+    }
+  } catch (error) {
+    return false;
+  }
+}
+
 //Método para modificar un profesor, relacionado con la ruta de put de Profesor
 //DTOProfesor es un json que viene de Body
 export const modificarProfesor = async (DTOProfesor, path) => {

@@ -1,3 +1,4 @@
+import { ObjectId } from "mongodb";
 import mongoose from "mongoose"; //importación de librerias
 
 
@@ -69,6 +70,24 @@ export async function getEstudiantesMongo(){
         console.log(error)
     }
 };
+
+//Metodo para hacer la consulta de un estudiante
+export async function getUsuariosBloqueadosEstudianteDB(id) {
+  try {
+    const data = await Estudiante.find({ _id: id }).lean();
+    if (data.length > 0) {
+      const estudiante = data[0];
+      const usuariosBloqueados = estudiante.usuariosBloqueados;
+      return usuariosBloqueados;
+    } else {
+      return false;
+    }
+  } catch (error) {
+    return false;
+  }
+}
+
+
 
 //Método que ingresa estudiantes a la base de datos mongo, esta es una lista de Json que contiene cada uno 
 //los datos de los estudiantes, devuelve esta misma lista 

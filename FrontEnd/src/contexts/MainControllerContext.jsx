@@ -26,6 +26,15 @@ const MainControllerContextProvider = ({ children }) => {
   let [chats, setChats] = useState([]);
   //Notificaciones
   let [notificaciones, setNotificaciones] = useState([]);
+
+  //*SISTEMA DE NOTIFICACIONES
+  const obtenerNotificaciones = async (usuarioIn) => {
+    let notificaciones = await sistemaNotificaciones.obtenerNotificaciones(
+      usuarioIn
+    );
+    setNotificaciones(notificaciones);
+    return notificaciones;
+  };
   //*SISTEMA MENSAJERIA
   /**
    * Metodo para obtener los chats de un usuario.
@@ -36,12 +45,7 @@ const MainControllerContextProvider = ({ children }) => {
     setChats(chats);
     return chats;
   };
-  //*Sistema de Notificaciones
-  const obtenerNotificaciones = async () => {
-    let notificaciones = await sistemaNotificaciones.obtenerNotificaciones();
-    setNotificaciones(notificaciones)
-    return notificaciones;
-  };
+
   /**
    * Metodo para crear un chat.
    * @param {Array con miembro creador del chat, miembro tiene la forma de Usuario} miembros.
@@ -78,7 +82,6 @@ const MainControllerContextProvider = ({ children }) => {
    * @returns {JSON} Mensaje enviado
    */
   const enviarMensaje = async (mensaje, emisor, idChat, fechaHora) => {
-    //Llamar a sistemaMensajeria.
     let mensajeEnviado = await sistemaMensajeria.enviarMensaje(
       mensaje,
       emisor,
@@ -86,7 +89,6 @@ const MainControllerContextProvider = ({ children }) => {
       fechaHora
     );
     obtenerChats(emisor._id);
-
     return mensajeEnviado;
   };
 

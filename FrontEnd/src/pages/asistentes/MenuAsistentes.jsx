@@ -37,6 +37,10 @@ function MenuAsistentes() {
     e.preventDefault();
     navigate("/infoChats");
   };
+  const handleNotificaciones = (e) => {
+    e.preventDefault();
+    navigate("/infoNotificaciones");
+  };
 
   const handleSalir = (e) => {
     e.preventDefault();
@@ -84,6 +88,11 @@ function MenuAsistentes() {
         <div id="containerBotonChats" className="p-5 m-3">
           <button className={estiloBotones} onClick={handleChats}>
             Chats
+          </button>
+        </div>
+        <div id="containerBotonChats" className="p-5 m-3">
+          <button className={estiloBotones} onClick={handleNotificaciones}>
+            Notificaciones
           </button>
         </div>
         <div className="text-center">

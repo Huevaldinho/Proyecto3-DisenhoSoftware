@@ -1,21 +1,21 @@
-import React from "react";
+import React, { useContext, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import { MainControllerContext } from "../../contexts/MainControllerContext";
-import { useContext, useEffect } from "react";
-import { Navigate, useNavigate } from "react-router-dom";
 import TablaChats from "../../components/compartidos/Chats/TablaChats";
-function infoChats(props) {
+
+function InfoChats(props) {
   const { chats, obtenerChats, usuario, setUsuario } = useContext(
     MainControllerContext
   );
   let navigate = useNavigate();
+  
   let storedUser = usuario;
-
   const updateState = () => {
     storedUser = JSON.parse(localStorage.getItem("usuario"));
     try {
       JSON.parse(storedUser);
     } catch (error) {
-      setUsuario(storedUser);//Almacena usuario
+      setUsuario(storedUser); //Almacena usuario
     }
   };
 
@@ -112,4 +112,4 @@ function infoChats(props) {
   );
 }
 
-export default infoChats;
+export default InfoChats;

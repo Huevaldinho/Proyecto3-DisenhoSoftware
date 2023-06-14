@@ -1,7 +1,6 @@
 import FilaNotificacion from "./FilaNotificaciones";
 
 function BodyNotificacion({ notificaciones }) {
-    console.log("Notificaciones debería ser vacio", notificaciones)
   if (notificaciones.length == 0)
     return <tbody className="bg-white divide-y divide-gray-200"></tbody>;
   return (

@@ -20,7 +20,8 @@ import MenuAsistentes from "../pages/asistentes/MenuAsistentes";
 import PlanDeTrabajo from "../pages/compartidas/PlanDeTrabajo";
 import DetallesActividad from "../pages/compartidas/DetallesActividad";
 import AgregarActividad from "../pages/profesores/coordinadores/AgregarActividad";
-
+//Estudiantes
+import MenuEstudiantes from "../pages/Estudiantes/MenuEstudiantes";
 import RegistrarProfesor from "../pages/asistentes/RegistrarProfesor";
 import ListaComentarios from "../components/profesores/ListaComentarios";
 import ListaRespuestas from "../components/profesores/ListaRespuestas";
@@ -33,7 +34,7 @@ import InfoChats from "../pages/compartidas/InfoChats";
 import DetallesChat from "../components/compartidos/Chats/DetallesChat";
 //Notificaciones
 import InfoNotificaciones from "../pages/compartidas/infoNotificaciones";
-
+import DetallesNotificacion from "../components/compartidos/notificaciones/DetallesNotificacion";
 function Router() {
   return (
     <BrowserRouter>
@@ -62,7 +63,10 @@ function Router() {
           element={<InformacionEstudiante />}
         />
         <Route path="/agregarEstudiante" element={<CargarExcel />} />
-
+        <Route
+          path="/menuEstudiantes"
+          element={<MenuEstudiantes />}
+        />
         {/*Inicio routes de PROFESORES */}
         <Route
           path="/informacionEstudiantesProfesores"
@@ -91,6 +95,7 @@ function Router() {
         <Route path="/detallesChat" element={<DetallesChat />} />
         {/*Routes Notificaciones */}
         <Route path="/infoNotificaciones" element={<InfoNotificaciones />} />
+        <Route path="/detallesNotificacion" element={<DetallesNotificacion />} />
         {/*Rutas NO ENCONTRADAS */}
         <Route path="*" element={<NotFound />} />
       </Routes>

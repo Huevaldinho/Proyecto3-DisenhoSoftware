@@ -13,7 +13,7 @@ function FilaNotificacion({ notificacion, index }) {
   const handleClick = (e) => {
     e.preventDefault();
     navigate("/detallesNotificacion", {
-      state: { notificacion: notificacion },
+      state: { notificacion: notificacion }
     });
   };
 

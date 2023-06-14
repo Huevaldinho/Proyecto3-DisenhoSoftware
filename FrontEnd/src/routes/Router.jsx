@@ -32,6 +32,7 @@ import MenuSuperUsuario from "../pages/superUsuario/MenuSuperUsuario";
 import ListaChats from "../components/compartidos/Chats/FilaChats";
 import InfoChats from "../pages/compartidas/InfoChats";
 import DetallesChat from "../components/compartidos/Chats/DetallesChat";
+import CrearChat from "../components/compartidos/Chats/CrearChat";
 //Notificaciones
 import InfoNotificaciones from "../pages/compartidas/infoNotificaciones";
 import DetallesNotificacion from "../components/compartidos/notificaciones/DetallesNotificacion";
@@ -93,6 +94,7 @@ function Router() {
         <Route path="/chats" element={<ListaChats />} />
         <Route path="/infoChats" element={<InfoChats />} />
         <Route path="/detallesChat" element={<DetallesChat />} />
+        <Route path="/crearChat" element={<CrearChat />} />
         {/*Routes Notificaciones */}
         <Route path="/infoNotificaciones" element={<InfoNotificaciones />} />
         <Route path="/detallesNotificacion" element={<DetallesNotificacion />} />

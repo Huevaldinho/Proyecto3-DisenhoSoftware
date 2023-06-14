@@ -10,7 +10,7 @@ import ResponsablesAgregarActividad from "../../profesores/coordinadores/agregar
 import DTOActividad from "../../../services/DTOs/DTOActividad";
 
 function FormularioDetallesActividad(props) {
-  const { setUsuario, usuario, actualizarActividad } = useContext(
+  const { setUsuario, usuario, actualizarActividad, notificar } = useContext(
     MainControllerContext
   );
   const navigate = useNavigate();
@@ -118,10 +118,7 @@ function FormularioDetallesActividad(props) {
     }
   };
   const handleRecordatoriosChange = (recordatorioIn) => {
-    console.log("Recordatorios:", recordatorios);
-
     recordatorioIn = convertirDateAString(recordatorioIn);
-    console.log("Recordatorio in:", recordatorioIn);
     if (recordatorios.length == 0) {
       //Si no hay recordatorios en el arreglo
       agregarRecordatorio(recordatorioIn);
@@ -166,6 +163,27 @@ function FormularioDetallesActividad(props) {
     const files = evento.target.files;
     setEvidencias(files);
   };
+  const handleNotificar = async (dtoActividad) => {
+    let notificacion = {
+      asunto: "Se ha modificado una actividad.",
+      cuerpo:
+        dtoActividad.estado === "Cancelada"
+          ? "La actividad: " + dtoActividad.nombre + " ha sido cancelada."
+          : "La actividad: " + dtoActividad.nombre + " ha sido modificada.",
+      fecha: new Date().toLocaleDateString("es-ES"),
+      hora: new Date().toLocaleTimeString("es-ES"),
+      emisor: {
+        tipoUsuario: "1", //Solo el profe puede modificar
+        _id: usuario._id,
+        nombre: usuario.nombre,
+        rol: "Profesor", //Solo el profe puede modificar
+        apellido: usuario.apellido1,
+      },
+      receptores: [], //Para notificar a todo el mundo
+    };
+    console.log("Notificacion en FormularioDetallesActividad:", notificacion);
+    //notificar(notificacion);
+  };
   const handleEnviar = async (e) => {
     e.preventDefault();
 
@@ -188,6 +206,7 @@ function FormularioDetallesActividad(props) {
     let respuesta = await actualizarActividad(dtoActividad, afiche, evidencias);
     if (Object.keys(respuesta).length !== 0) {
       alert("Se ha modificado exitosamente la actividad.");
+      handleNotificar(dtoActividad);
       navigate("/planDeTrabajo");
     } else alert("No se ha podido modificar la actividad, intente de nuevo.");
   };

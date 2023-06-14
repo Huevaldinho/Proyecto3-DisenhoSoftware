@@ -45,6 +45,14 @@ const MainControllerContextProvider = ({ children }) => {
     setChats(chats);
     return chats;
   };
+  /**
+   * Metodo para notificar.
+   * @param {Notificacion} notificacion
+   */
+  const notificar = async (notificacion) => {
+    let respuesta = sistemaNotificaciones.notificar(notificacion);
+    return respuesta;
+  };
 
   /**
    * Metodo para crear un chat.
@@ -176,10 +184,6 @@ const MainControllerContextProvider = ({ children }) => {
   const iniciarSesion = async (correoIn, contrasennaIn) => {
     const data = await mainController.iniciarSesion(correoIn, contrasennaIn);
     localStorage.setItem("usuario", JSON.stringify(data));
-    console.log(
-      "usuario en localStorage:",
-      JSON.parse(localStorage.getItem("usuario"))
-    );
     setUsuario(data); //guarda datos de usuario
     return data;
   };
@@ -358,6 +362,7 @@ const MainControllerContextProvider = ({ children }) => {
         enviarMensaje,
         notificaciones,
         obtenerNotificaciones,
+        notificar,
       }}
     >
       {children}

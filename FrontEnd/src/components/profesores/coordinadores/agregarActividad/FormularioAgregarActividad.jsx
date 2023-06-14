@@ -24,7 +24,9 @@ import { useNavigate } from "react-router-dom";
 
 function FormularioAgregarActividad(props) {
   //*Los permisos aun no se crean pero para agregar solo el coordinador puede hacerlo.
-  const { crearActividad } = useContext(MainControllerContext);
+  const { crearActividad, notificar, usuario } = useContext(
+    MainControllerContext
+  );
   const navigate = useNavigate();
 
   //Use states
@@ -121,6 +123,27 @@ function FormularioAgregarActividad(props) {
     });
     return datesString;
   };
+  const handleNotificar = async (dtoActividad) => {
+    let notificacion = {
+      asunto: "Se ha creado una nueva actividad.",
+      cuerpo:
+        "Para más detalles acerca de la actividad con nombre: " +
+        dtoActividad.nombre +
+        ", consulte el plan de trabajo.",
+      fecha: new Date().toLocaleDateString("es-ES"),
+      hora: new Date().toLocaleTimeString("es-ES"),
+      emisor: {
+        tipoUsuario: "1", //Solo el profe puede modificar
+        _id: usuario._id,
+        nombre: usuario.nombre,
+        rol: "Profesor", //Solo el profe puede modificar
+        apellido: usuario.apellido1,
+      },
+      receptores: [], //Para notificar a todo el mundo
+    };
+    console.log("Notificacion en FormularioAgregarActividad:", notificacion);
+    //notificar(notificacion);
+  };
   const handleErrores = async (respuestaValidacion) => {
     switch (respuestaValidacion) {
       case 0: {
@@ -145,6 +168,7 @@ function FormularioAgregarActividad(props) {
         );
         if (Object.keys(respuestaMainController).length !== 0) {
           alert("Se ha creado exitosamente la actividad.");
+          handleNotificar(dtoActividad);
           navigate("/planDeTrabajo");
         } else alert("No se ha podido crear la actividad, intente de nuevo.");
         break;
@@ -155,6 +179,7 @@ function FormularioAgregarActividad(props) {
       }
     }
   };
+
   const handleEnviar = (e) => {
     e.preventDefault();
     let datos = {

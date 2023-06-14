@@ -181,8 +181,7 @@ function FormularioDetallesActividad(props) {
       },
       receptores: [], //Para notificar a todo el mundo
     };
-    console.log("Notificacion en FormularioDetallesActividad:", notificacion);
-    //notificar(notificacion);
+    notificar(notificacion);
   };
   const handleEnviar = async (e) => {
     e.preventDefault();

@@ -141,8 +141,7 @@ function FormularioAgregarActividad(props) {
       },
       receptores: [], //Para notificar a todo el mundo
     };
-    console.log("Notificacion en FormularioAgregarActividad:", notificacion);
-    //notificar(notificacion);
+    notificar(notificacion);
   };
   const handleErrores = async (respuestaValidacion) => {
     switch (respuestaValidacion) {

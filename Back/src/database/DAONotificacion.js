@@ -11,6 +11,7 @@ const notificacionSchema = new mongoose.Schema({
   hora: { type: String, required: true },
   emisor: { type: mongoose.Schema.Types.Mixed, required: true },
   receptores: { type: Array, required: true },
+  idChat: { type: String, required: true }
 });
 
 const Notificacion = mongoose.model("Notificacion", notificacionSchema, "Notificacion"); //Objeto de conexión entre mongo y la api
@@ -102,7 +103,7 @@ export const getNotificacionesEnviadasDB = async (idUsuario) => {
 export const postNotificacionDB = async (DTONotificacion) => {
   try {
     // Filtrar los campos necesarios del objeto DTONotificacion
-    const { asunto, cuerpo, fecha, hora, emisor, receptores } = DTONotificacion;
+    const { asunto, cuerpo, fecha, hora, emisor, receptores, idChat } = DTONotificacion;
     const emisorReducido = {
       tipoUsuario: emisor.tipoUsuario,
       _id: emisor._id,
@@ -121,7 +122,7 @@ export const postNotificacionDB = async (DTONotificacion) => {
         );
     } else {
       receptoresReducidos = receptores.map(
-        ({ tipoUsuario, _id, estado }) => ({ tipoUsuario, _id: _id.toHexString(), estado:"NO_LEIDA" })
+        ({ tipoUsuario, _id, estado }) => ({ tipoUsuario, _id, estado})
       );
     }
     
@@ -133,11 +134,13 @@ export const postNotificacionDB = async (DTONotificacion) => {
       hora,
       emisor: emisorReducido,
       receptores: receptoresReducidos,
+      idChat
     });
-
     nuevaNotificacion.save();
     return nuevaNotificacion;
+    
   } catch (error) {
+    console.log("SE esta cyendo?????");
     return error;
   }
 };

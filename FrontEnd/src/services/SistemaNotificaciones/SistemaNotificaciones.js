@@ -35,7 +35,7 @@ export default class SistemaNotificaciones {
                     hora: notificacion.hora,
                     emisor: notificacion.emisor,
                     receptores: notificacion.receptores,
-                    idChat:notificacion.idChat
+                    idChat: notificacion.idChat
                 })
             });
             let data = await response.json(); // Convertir datos a formato JSON

@@ -28,6 +28,10 @@ function DetallesChat() {
       setUsuario(storedUser);
     }
   };
+  const handleRegresar = (e) => {
+    e.preventDefault();
+    navigate("/infoChats");
+  };
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -90,6 +94,11 @@ function DetallesChat() {
           </p>
           No hay mensajes para mostrar.
         </div>
+        <div className="text-center">
+        <button className="text-center bg-red-500 hover:bg-red-900 p-2 m-2 rounded" onClick={handleRegresar}>
+          Regresar
+        </button>
+      </div>
         <div className="text-center py-8 font-bold text-1l">
           <form onSubmit={handleSubmit}>
             <input
@@ -101,7 +110,7 @@ function DetallesChat() {
             />
             <button
               type="submit"
-              className="bg-blue-500 text-white px-4 py-2 rounded mt-2"
+              className="bg-blue-500  text-white p-2 rounded m-2"
             >
               Enviar
             </button>
@@ -114,9 +123,16 @@ function DetallesChat() {
   for (let i = mensajes.length - 1; i >= 0; i--) {
     mensajesAlreves.push(mensajes[i]);
   }
+
+
   return (
     <div className="flex flex-col gap-4">
       <p className="text-center font-bold text-5xl p-3 m-2">{chat.nombre}</p>
+      <div className="text-center">
+        <button className="text-center bg-red-500 hover:bg-red-900 p-2 m-2 rounded" onClick={handleRegresar}>
+          Regresar
+        </button>
+      </div>
       <form className="mb-5" onSubmit={handleSubmit}>
         <input
           type="text"
@@ -132,6 +148,7 @@ function DetallesChat() {
           Enviar
         </button>
       </form>
+
       {mensajesAlreves.map((mensaje, index) => (
         <div key={index} className="bg-gray-200 rounded p-3 hover:bg-blue-500">
           <p className="font-bold mb-2">Mensaje de: {mensaje.emisor.nombre1}</p>

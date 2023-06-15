@@ -44,6 +44,14 @@ const MainControllerContextProvider = ({ children }) => {
       await sistemaNotificaciones.modificarNotificacion(notificacion);
     return notificacionModificada;
   };
+    /**
+   * Metodo para notificar.
+   * @param {Notificacion} notificacion
+   */
+    const notificar = async (notificacion) => {
+      let respuesta = sistemaNotificaciones.notificar(notificacion);
+      return respuesta;
+    };
   //*SISTEMA MENSAJERIA
   /**
    * Metodo para obtener los chats de un usuario.
@@ -54,21 +62,14 @@ const MainControllerContextProvider = ({ children }) => {
     setChats(chats);
     return chats;
   };
-  /**
-   * Metodo para notificar.
-   * @param {Notificacion} notificacion
-   */
-  const notificar = async (notificacion) => {
-    let respuesta = sistemaNotificaciones.notificar(notificacion);
-    return respuesta;
-  };
+
 
   /**
    * Metodo para crear un chat.
    * @param {Array con miembro creador del chat, miembro tiene la forma de Usuario} miembros.
    */
-  const crearChat = async (creadorChat) => {
-    let chat = await sistemaMensajeria.crearChat(creadorChat);
+  const crearChat = async (creadorChat,nombreChat) => {
+    let chat = await sistemaMensajeria.crearChat(creadorChat,nombreChat);
     return chat;
   };
 

@@ -4,7 +4,9 @@ import { useNavigate } from "react-router-dom";
 import PersonasChat from "./PersonasChat";
 import { MainControllerContext } from "../../../contexts/MainControllerContext";
 function CrearChat(props) {
-  const { usuario } = useContext(MainControllerContext);
+  const { usuario, crearChat, notificar, agregarMiembroAchat } = useContext(
+    MainControllerContext
+  );
   const navigate = useNavigate();
 
   //Use states
@@ -41,11 +43,58 @@ function CrearChat(props) {
       agregarIntegrante(IntegranteIn);
     }
   };
-  const handleEnviar = (e) => {
+  const handleEnviar = async (e) => {
     e.preventDefault();
-    console.log("Creador:", usuario);
-    console.log("Integrantes:", integrantes);
-    console.log("Nombre chat:", nombreChat);
+
+    let miembro = {
+      nombre1: usuario.nombre,
+      nombre2: usuario.nombre2,
+      apellido1: usuario.apellido1,
+      apellido2: usuario.apellido2,
+    };
+    let respuesta = await crearChat(miembro, nombreChat);
+    let agregacionCreadorAlchat = await agregarMiembroAchat(respuesta._id, {
+      _id: usuario._id,
+      nombre1: usuario.nombre,
+      nombre2: usuario.nombre2,
+      apellido1: usuario.apellido1,
+      apellido2: usuario.apellido2,
+    });
+    let receptores = [];
+    for (let i = 0; i < integrantes.length; i++) {
+      receptores.push({
+        tipoUsuario:
+          integrantes[i].rol === "Profesor" ||
+          integrantes[i].rol === "Asistente"
+            ? "1"
+            : "2",
+        _id: integrantes[i]._id,
+        estado: "NO_LEIDA",
+      });
+    }
+    let notificacion = {
+      asunto: "Invitación a chat.",
+      cuerpo:
+        "El profesor: " +
+        usuario.nombre +
+        " le ha invitado a una sala de chat con nombre: " +
+        nombreChat +
+        ".",
+      fecha: new Date().toLocaleDateString("es-ES"),
+      hora: new Date().toLocaleTimeString("es-ES"),
+      emisor: { tipoUsuario: "1", _id: usuario._id, nombre: usuario.nombre },
+      receptores: receptores,
+      idChat: respuesta._id,
+    };
+    console.log("notificacion: ", notificacion);
+    let respuestaNoti = await notificar(notificacion);
+    if (Object.keys(respuesta).length !== 0) {
+      alert("Se han enviado las invitaciones al chat.");
+      navigate("/infoChats");
+    } else
+      alert(
+        "No se han podido enviar las invitaciones del chat, intente más tarde."
+      );
   };
 
   //*Styles

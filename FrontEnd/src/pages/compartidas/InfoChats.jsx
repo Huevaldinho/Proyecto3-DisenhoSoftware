@@ -52,7 +52,6 @@ function InfoChats(props) {
     navigate("/crearChat");
   };
 
-
   if (chats.length == 0) {
     return (
       <>
@@ -82,7 +81,7 @@ function InfoChats(props) {
       </>
     );
   }
- 
+
   return (
     <div className="container m-auto">
       <div className="text-center" id="nombrePlanConteiner">

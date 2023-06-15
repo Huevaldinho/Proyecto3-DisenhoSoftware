@@ -11,6 +11,7 @@ export default class SistemaMensajeria {
      * @returns {Array de Chats,Chats en formato JSON}
      */
     async obtenerChats(idMiembro) {
+        console.log("obtenerChats, idMiembro:", idMiembro)
         try {
             const response = await fetch(`${API_URL}/chat/${idMiembro}`, {
                 method: 'GET'
@@ -28,8 +29,9 @@ export default class SistemaMensajeria {
      * @param {JSON} creadorChat 
      * @returns {JSON} Chat creado
      */
-    async crearChat(creadorChat) {
+    async crearChat(creadorChat, nombreChat) {
         try {
+            console.log("Creador chat:", creadorChat)
             const response = await fetch(`${API_URL}/chat/`, {
                 method: 'POST',
                 headers: {
@@ -40,7 +42,8 @@ export default class SistemaMensajeria {
                     nombre1: creadorChat.nombre1,
                     nombre2: creadorChat.nombre2,
                     apellido1: creadorChat.apellido1,
-                    apellido2: creadorChat.apellido2
+                    apellido2: creadorChat.apellido2,
+                    nombreChat: nombreChat
                 })
             });
             let data = await response.json(); // Convertir datos a formato JSON
@@ -92,7 +95,7 @@ export default class SistemaMensajeria {
      * @param {JSON con forma de Usuario} miembro.
      * @returns {JSON} Chat donde se agrego el miembro.
      */
-    async agregarMiembroAchat(idChat, miembro,) {
+    async agregarMiembroAchat(idChat, miembro) {
         try {
             const response = await fetch(`${API_URL}/chat/`, {
                 method: 'PUT',

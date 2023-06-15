@@ -8,7 +8,7 @@ function InfoChats(props) {
     MainControllerContext
   );
   let navigate = useNavigate();
-  
+
   let storedUser = usuario;
   const updateState = () => {
     storedUser = JSON.parse(localStorage.getItem("usuario"));
@@ -41,42 +41,35 @@ function InfoChats(props) {
 
   if (storedUser == null) return <p>Cargando</p>;
 
-  const handleRetroceder = (e) => {
-    e.preventDefault();
-    if (storedUser.rol === "Asistente") navigate("/menuAsistentes");
-    else if (storedUser.rol === "Profesor") navigate("/menuProfesores");
-    else if (storedUser.rol === "Estudiante") navigate("/menuEstudiantes");
-  };
-  if (chats.length === 0) {
-    return (
-      <>
-        <p className="text-center text-5xl font-bold">
-          No hay chats disponibles
-        </p>
-        <div className="text-center">
-          <button
-            className=" bg-red-500 rounded-xl p-3 m-2"
-            onClick={handleRetroceder}
-          >
-            Regresar
-          </button>
-        </div>
-      </>
-    );
-  }
-
   const handleRegresar = (e) => {
     e.preventDefault();
     if (storedUser.rol === "Asistente") navigate("/menuAsistentes");
     else if (storedUser.rol === "Profesor") navigate("/menuProfesores");
     else if (storedUser.rol === "Estudiante") navigate("/menuEstudiantes");
   };
+  const handleClick = (e) => {
+    e.preventDefault();
+    navigate("/crearChat");
+  };
+
 
   if (chats.length == 0) {
     return (
       <>
         <div className="text-center font-bold text-4xl text-red-500 p-2 m-2">
           No hay chats para mostrar.
+        </div>
+        <div
+          hidden={storedUser.rol === "Estudiante"}
+          className="text-center bg-green-500 hover:bg-green-800 rounded-2xl p-3 m-5"
+        >
+          <button
+            type="submit"
+            className="text-center w-full"
+            onClick={handleClick}
+          >
+            Crear Chat
+          </button>
         </div>
         <div className="text-center">
           <button
@@ -89,6 +82,7 @@ function InfoChats(props) {
       </>
     );
   }
+ 
   return (
     <div className="container m-auto">
       <div className="text-center" id="nombrePlanConteiner">
@@ -99,6 +93,19 @@ function InfoChats(props) {
       <div className="text-center" id="tablaProfesores">
         {/*Las actividades se las pasa a la tabla por props */}
         <TablaChats chats={chats} />
+      </div>
+
+      <div
+        hidden={storedUser.rol === "Estudiante"}
+        className="text-center bg-green-500 hover:bg-green-800 rounded-2xl p-3 m-5"
+      >
+        <button
+          type="submit"
+          className="text-center w-full"
+          onClick={handleClick}
+        >
+          Crear Chat
+        </button>
       </div>
       <div className="text-center">
         <button

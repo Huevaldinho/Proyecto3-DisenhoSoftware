@@ -1,16 +1,9 @@
 import React from "react";
-import { useNavigate } from "react-router-dom";
 //Componentes de tabla
 import HeaderChats from "./HeaderChats";
 import BodyChats from "./BodyChats";
 
 function TablaChats({ chats }) {
-  const navigate = useNavigate();
-  const handleClick = (e) => {
-    e.preventDefault();
-    navigate("/crearChat");
-  };
-
   if (chats.length === 0) {
     return (
       <div className="text-center font-bold text-4xl text-red-500">
@@ -34,15 +27,8 @@ function TablaChats({ chats }) {
           </div>
         </div>
       </div>
-      <div className="text-center bg-green-500 hover:bg-green-800 rounded-2xl p-3 m-5">
-        <button type="submit" className="text-center w-full" onClick={handleClick}>
-          Crear Chat
-        </button>
-      </div>
     </div>
   );
 }
 
 export default TablaChats;
-
-

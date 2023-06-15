@@ -68,15 +68,16 @@ function MenuProfesoresGuia() {
           </button>
         </div>
         <div id="containerBotonChats" className="p-5 m-3">
-          <button className={estiloBotones} onClick={handleChats}>
-            Chats
-          </button>
-        </div>
-        <div id="containerBotonChats" className="p-5 m-3">
           <button className={estiloBotones} onClick={handleNotificaciones}>
             Notificaciones
           </button>
         </div>
+        <div id="containerBotonChats" className="p-5 m-3">
+          <button className={estiloBotones} onClick={handleChats}>
+            Chats
+          </button>
+        </div>
+
         <div className="text-center">
           <button
             className="text-center bg-red-500 hover:bg-red-800  rounded-xl p-3 m-2"

@@ -51,9 +51,6 @@ function MenuAsistentes() {
     "text-center p-3 m-3bg-blue-600 border-collapse shadow-xl hover:bg-green-600 bg-blue-600 rounded-3xl";
   return (
     <div className="container p-5 m-3">
-      {/**
-       <NavBarProfesores /> 
-       */}
       <h1 className="text-center font-bold text-5xl">Menú Asistentes </h1>
       <div
         id="containerBotonInformacionEquipoGuia"
@@ -86,15 +83,16 @@ function MenuAsistentes() {
           </button>
         </div>
         <div id="containerBotonChats" className="p-5 m-3">
-          <button className={estiloBotones} onClick={handleChats}>
-            Chats
-          </button>
-        </div>
-        <div id="containerBotonChats" className="p-5 m-3">
           <button className={estiloBotones} onClick={handleNotificaciones}>
             Notificaciones
           </button>
         </div>
+        <div id="containerBotonChats" className="p-5 m-3">
+          <button className={estiloBotones} onClick={handleChats}>
+            Chats
+          </button>
+        </div>
+
         <div className="text-center">
           <button
             className="text-center rounded-xl p-3 m-2 bg-red-500 hover:bg-red-800  "

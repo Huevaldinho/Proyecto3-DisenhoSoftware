@@ -56,9 +56,11 @@ export const getNotificacionesRecibidasDB = async (idUsuario, tipoUsuario) => {
         notificacionesParaMostrar.splice(i, 1) // Elimina el elemento en el índice 1
       }
     }
+    
     return notificacionesParaMostrar ?? false;
 
   } catch (error) {
+    console.log("ERROR");
     return error
   }
 };
@@ -113,13 +115,13 @@ export const postNotificacionDB = async (DTONotificacion) => {
       const estudiantes = await getEstudiantesMongo();
       const profesores = await getProfesoresMongo();
       receptoresReducidos = profesores
-        .map(({ _id }) => ({ tipoUsuario: 1, _id, estado: "NO_LEIDA" })) // Obtener info necesaria de Profesores
+        .map(({ _id }) => ({ tipoUsuario: "1", _id: _id.toHexString(), estado: "NO_LEIDA" })) // Obtener info necesaria de Profesores
         .concat(
-          estudiantes.map(({ _id }) => ({tipoUsuario: 2, _id, estado: "NO_LEIDA"})) // Obtener info necesaria de Estudiantes
+          estudiantes.map(({ _id }) => ({tipoUsuario: "2", _id: _id.toHexString(), estado: "NO_LEIDA"})) // Obtener info necesaria de Estudiantes
         );
     } else {
       receptoresReducidos = receptores.map(
-        ({ tipoUsuario, _id, estado }) => ({ tipoUsuario, _id, estado:"NO_LEIDA" })
+        ({ tipoUsuario, _id, estado }) => ({ tipoUsuario, _id: _id.toHexString(), estado:"NO_LEIDA" })
       );
     }
     

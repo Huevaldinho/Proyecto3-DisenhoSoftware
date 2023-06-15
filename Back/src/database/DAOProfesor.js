@@ -163,7 +163,7 @@ export async function getUsuariosBloqueadosProfesorDB(id) {
     if (data.length > 0) {
       const profesor = data[0];
       const usuariosBloqueados = profesor.usuariosBloqueados;
-      return usuariosBloqueados;
+      return usuariosBloqueados ?? [];
     } else {
       return false;
     }

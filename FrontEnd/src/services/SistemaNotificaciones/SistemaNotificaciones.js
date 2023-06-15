@@ -5,7 +5,7 @@ export default class SistemaNotificaciones {
     //*Metodos
     async obtenerNotificaciones(usuario) {
         try {
-            const response = await fetch(`${API_URL}/notificacion/recibidas/${usuario._id}/?tu=${usuario.rol === "Profesor" ? 1 : 2}`, {
+            const response = await fetch(`${API_URL}/notificacion/recibidas/${usuario._id}/?tu=${usuario.rol === "Profesor" || usuario.rol === "Asistente" ? 1 : 2}`, {
                 method: 'GET'
             });
             let data = await response.json(); // Convertir datos a formato JSON

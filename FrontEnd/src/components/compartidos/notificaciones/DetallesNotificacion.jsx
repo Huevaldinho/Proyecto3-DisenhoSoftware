@@ -9,6 +9,8 @@ const DetallesNotificacion = () => {
   const location = useLocation();
   const notificacion = location.state.notificacion;
 
+  
+
   const marcarNoLeida = () => {
     for (let i = 0; i < notificacion.receptores.length; i++) {
       if (notificacion.receptores[i]._id === usuario._id) {

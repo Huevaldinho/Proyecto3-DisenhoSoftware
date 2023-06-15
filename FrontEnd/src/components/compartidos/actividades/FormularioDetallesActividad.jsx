@@ -165,7 +165,7 @@ function FormularioDetallesActividad(props) {
   };
   const handleNotificar = async (dtoActividad) => {
     let notificacion = {
-      asunto: "Se ha modificado una actividad.",
+      asunto: dtoActividad.estado !== "Cancelada"?"Se ha modificado una actividad.":"Se ha cancelado una actividad.",
       cuerpo:
         dtoActividad.estado === "Cancelada"
           ? "La actividad: " + dtoActividad.nombre + " ha sido cancelada."

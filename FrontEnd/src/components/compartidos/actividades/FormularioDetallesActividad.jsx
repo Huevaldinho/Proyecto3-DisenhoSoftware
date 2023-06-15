@@ -180,6 +180,7 @@ function FormularioDetallesActividad(props) {
         apellido: usuario.apellido1,
       },
       receptores: [], //Para notificar a todo el mundo
+      idChat:'0'
     };
     notificar(notificacion);
   };

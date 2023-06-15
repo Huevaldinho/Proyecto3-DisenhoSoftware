@@ -74,12 +74,15 @@ const MainControllerContextProvider = ({ children }) => {
 
   /**
    * Metodo para aggregar miembro a un chat.
-   * @param {JSON con forma de Usuario} usuario
-   * @param {JSON con forma de Chat} chat
+   * @param {String} idChat
+   * @param {JSON con forma de Usuario} miembro
    */
-  const agregarMiembroAchat = async (usuario, chat) => {
-    //TODO
-    //Llamar a sistemaMensajeria
+  const agregarMiembroAchat = async (idChat, miembro) => {
+    let respuesta = await sistemaMensajeria.agregarMiembroAchat(
+      idChat,
+      miembro
+    );
+    return respuesta;
   };
   /**
    * Metodo para eliminar a un miembro de un chat.
@@ -373,6 +376,7 @@ const MainControllerContextProvider = ({ children }) => {
         obtenerNotificaciones,
         notificar,
         modificarNotificacion,
+        agregarMiembroAchat
       }}
     >
       {children}

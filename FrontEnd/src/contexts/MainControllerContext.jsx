@@ -35,6 +35,15 @@ const MainControllerContextProvider = ({ children }) => {
     setNotificaciones(notificaciones);
     return notificaciones;
   };
+  /**
+   * Metodo para modificar una notificacion.
+   * @param {Notificacion} notificacion
+   */
+  const modificarNotificacion = async (notificacion) => {
+    let notificacionModificada =
+      await sistemaNotificaciones.modificarNotificacion(notificacion);
+    return notificacionModificada;
+  };
   //*SISTEMA MENSAJERIA
   /**
    * Metodo para obtener los chats de un usuario.
@@ -363,6 +372,7 @@ const MainControllerContextProvider = ({ children }) => {
         notificaciones,
         obtenerNotificaciones,
         notificar,
+        modificarNotificacion,
       }}
     >
       {children}

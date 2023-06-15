@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 import { MainControllerContext } from "../../../contexts/MainControllerContext";
 
 function FilaNotificacion({ notificacion, index }) {
-  const { usuario } = useContext(MainControllerContext);
+  const { usuario, modificarNotificacion } = useContext(MainControllerContext);
   const navigate = useNavigate();
 
   if (notificacion === undefined || notificacion == {})
@@ -12,8 +12,16 @@ function FilaNotificacion({ notificacion, index }) {
 
   const handleClick = (e) => {
     e.preventDefault();
+    for (let i = 0; i < notificacion.receptores.length; i++) {
+      if (notificacion.receptores[i]._id === usuario._id) {
+        notificacion.receptores[i].estado = "LEIDA";
+        break;
+      }
+    }
+    modificarNotificacion(notificacion);
+
     navigate("/detallesNotificacion", {
-      state: { notificacion: notificacion }
+      state: { notificacion: notificacion },
     });
   };
 
@@ -31,7 +39,7 @@ function FilaNotificacion({ notificacion, index }) {
       estado = receptor.estado;
     }
   });
-  
+
   return (
     <tr onDoubleClick={handleClick} className={styleFilas}>
       <td className={styleRow}>{notificacion.emisor.nombre}</td>

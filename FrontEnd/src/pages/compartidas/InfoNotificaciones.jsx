@@ -28,19 +28,22 @@ function InfoNotificaciones(props) {
     };
   }, []);
 
-  const updateState = () => {
-    setTimeout(() => {
-      if (storedUser != null) obtenerNotificaciones(storedUser);
-    }, 1000);
-  };
-
-  useEffect(() => {
-    updateState();
-  }, []);
-
   if (storedUser === null) {
     return <p className="text-5xl text-center font-bold">Cargando...</p>;
   }
+
+  useEffect(() => {
+    const intervalId = setInterval(() => {
+      if (storedUser != null) {
+        obtenerNotificaciones(storedUser);
+      }
+    }, 2000);
+
+    // Limpia el intervalo cuando el componente se desmonte o actualice
+    return () => {
+      clearInterval(intervalId);
+    };
+  }, []);
 
   const handleRegresar = (e) => {
     e.preventDefault();

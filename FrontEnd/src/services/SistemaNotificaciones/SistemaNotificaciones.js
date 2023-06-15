@@ -4,6 +4,7 @@ export default class SistemaNotificaciones {
     constructor() { }
     //*Metodos
     async obtenerNotificaciones(usuario) {
+        console.log("Usuario:", usuario, " tu=", usuario.rol === "Profesor" ? 1 : 2)
         try {
             const response = await fetch(`${API_URL}/notificacion/recibidas/${usuario._id}/?tu=${usuario.rol === "Profesor" ? 1 : 2}`, {
                 method: 'GET'

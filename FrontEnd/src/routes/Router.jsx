@@ -1,4 +1,5 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { Navigate } from "react-router-dom";
 
 //!Para poder declarar las rutas hay que importar el archivo al cual va a redireccionar la ruta.
 //Otras pages
@@ -8,7 +9,6 @@ import Login from "../pages/auth/Login";
 import CambiarContraseanna from "../pages/auth/CambiarContraseanna";
 //Profesores
 import InformacionEstudiante from "../pages/profesores/InformacionEstudiante";
-import AgregarEstudiante from "../pages/profesores/AgregarEstudiante";
 import MensajeGenerarReporte from "../pages/manejoExcel/MensajeGenerarReporte";
 import MenuProfesoresGuia from "../pages/profesores/MenuProfesoresGuia";
 import InformacionEstudiantesProfesores from "../pages/profesores/InformacionEstudiantesProfesores";
@@ -20,13 +20,22 @@ import MenuAsistentes from "../pages/asistentes/MenuAsistentes";
 import PlanDeTrabajo from "../pages/compartidas/PlanDeTrabajo";
 import DetallesActividad from "../pages/compartidas/DetallesActividad";
 import AgregarActividad from "../pages/profesores/coordinadores/AgregarActividad";
-import { Navigate } from "react-router-dom";
+//Estudiantes
+import MenuEstudiantes from "../pages/Estudiantes/MenuEstudiantes";
 import RegistrarProfesor from "../pages/asistentes/RegistrarProfesor";
 import ListaComentarios from "../components/profesores/ListaComentarios";
 import ListaRespuestas from "../components/profesores/ListaRespuestas";
 import AgregarComentario from "../components/profesores/AgregarComentario";
 import AgregarRespuesta from "../components/profesores/AgregarRespuesta";
 import MenuSuperUsuario from "../pages/superUsuario/MenuSuperUsuario";
+//Chats
+import ListaChats from "../components/compartidos/Chats/FilaChats";
+import InfoChats from "../pages/compartidas/InfoChats";
+import DetallesChat from "../components/compartidos/Chats/DetallesChat";
+import CrearChat from "../components/compartidos/Chats/CrearChat";
+//Notificaciones
+import InfoNotificaciones from "../pages/compartidas/infoNotificaciones";
+import DetallesNotificacion from "../components/compartidos/notificaciones/DetallesNotificacion";
 function Router() {
   return (
     <BrowserRouter>
@@ -55,7 +64,10 @@ function Router() {
           element={<InformacionEstudiante />}
         />
         <Route path="/agregarEstudiante" element={<CargarExcel />} />
-
+        <Route
+          path="/menuEstudiantes"
+          element={<MenuEstudiantes />}
+        />
         {/*Inicio routes de PROFESORES */}
         <Route
           path="/informacionEstudiantesProfesores"
@@ -78,7 +90,14 @@ function Router() {
 
         {/*Routes EXCEL */}
         <Route path="/cargarExcel" element={<CargarExcel />} />
-
+        {/*Routes Chats */}
+        <Route path="/chats" element={<ListaChats />} />
+        <Route path="/infoChats" element={<InfoChats />} />
+        <Route path="/detallesChat" element={<DetallesChat />} />
+        <Route path="/crearChat" element={<CrearChat />} />
+        {/*Routes Notificaciones */}
+        <Route path="/infoNotificaciones" element={<InfoNotificaciones />} />
+        <Route path="/detallesNotificacion" element={<DetallesNotificacion />} />
         {/*Rutas NO ENCONTRADAS */}
         <Route path="*" element={<NotFound />} />
       </Routes>

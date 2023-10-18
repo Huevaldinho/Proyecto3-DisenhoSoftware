@@ -1,0 +1,380 @@
+{
+	"info": {
+		"_postman_id": "199db480-a620-4906-a9f7-c6fd15ad41b7",
+		"name": "Proyecto 2 Disenho",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "24803048"
+	},
+	"item": [
+		{
+			"name": "Estudiantes",
+			"item": [
+				{
+					"name": "Get Estudiantes",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:3000/estudiantes",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"estudiantes"
+							]
+						},
+						"description": "Solicita todos los estudiantes."
+					},
+					"response": []
+				}
+			],
+			"description": "Peticiones relacionados con los estudiantes."
+		},
+		{
+			"name": "Auth",
+			"item": [
+				{
+					"name": "Iniciar sesion",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/inicio/feobando@estudiantec.cr/hola1234",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"inicio",
+								"feobando@estudiantec.cr",
+								"hola1234"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Cambiar contraseña",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/inicio/cherry@estudiantec.cr/12345678",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"inicio",
+								"cherry@estudiantec.cr",
+								"12345678"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"description": "Peticiones de autenticación."
+		},
+		{
+			"name": "Profesores",
+			"item": [
+				{
+					"name": "Get Profesores",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/profesor",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"profesor"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Profesor",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/profesor/118630094",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"profesor",
+								"118630094"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Modificar Profesor",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"cedula\":\"118635594\",\"nombre\":\"Anthony\",\"nombre2\":\"Rolando\",\"apellido1\":\"Jiménez\",\"apellido2\":\"Barrantes\",\"correo\":\"antho.steve@gmail.com\",\"contrasenna\":\"12345\",\"rol\":\"Profesor\",\"codigo\":\"CA-0203\",\"coordinador\":\"COORDINADOR\",\"telefono\":\"84800640\",\"campus\":\"Campus Tecnológico Central Cartago\",\"equipo\":\"Equipo\",\"celular\":\"506-60054515\"}"
+						},
+						"url": {
+							"raw": "http://localhost:3000/profesor",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"profesor"
+							]
+						},
+						"description": "Envía la información del profesor modificado en el body del request."
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Comentarios",
+			"item": [
+				{
+					"name": "Get comentarios",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/comentario/64628f3c8c33522048a123d8",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"comentario",
+								"64628f3c8c33522048a123d8"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Post comentario",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"descripcion\": \"probando comentario sin que exista comentarios previos 2\",\r\n    \"fecha\": \"17-05-2023 18: 17: 54\",\r\n    \"autor\": \"Felipe Carvajal Arrieta\",\r\n    \"idRespuesta\": null,\r\n    \"idActividad\": \"64656eb244d4381cbed20392\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/comentario/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"comentario",
+								""
+							]
+						},
+						"description": "Envía la información del comentario en el body de la petición."
+					},
+					"response": []
+				}
+			],
+			"description": "Peticiones relacionadas con los comentarios."
+		},
+		{
+			"name": "Actividades",
+			"item": [
+				{
+					"name": "Get Actividades",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/actividades",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"actividades"
+							]
+						},
+						"description": "Obtiene todas las actividades."
+					},
+					"response": []
+				}
+			],
+			"description": "Peticiones relacionadas con las actividades."
+		},
+		{
+			"name": "Plan de trabajo",
+			"item": [
+				{
+					"name": "Put nombre plan de trabajo",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"nombre\":\"Nuevo nombre 2\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/planTrabajo/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"planTrabajo",
+								""
+							]
+						},
+						"description": "Envía el nombre del plan de trabajo a través del body de la petición."
+					},
+					"response": []
+				},
+				{
+					"name": "Get plan de trabajo",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/planTrabajo/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"planTrabajo",
+								""
+							]
+						},
+						"description": "Obtiene el plan de trabajo."
+					},
+					"response": []
+				}
+			],
+			"description": "Peticiones relacionadas con el plan de trabajo."
+		},
+		{
+			"name": "Asistentes",
+			"item": [
+				{
+					"name": "Post Asistente",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/asistente/CA-01/Campus Tecnológico Central Cartago",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"asistente",
+								"CA-01",
+								"Campus Tecnológico Central Cartago"
+							]
+						},
+						"description": "Asigna un asistente en un campus."
+					},
+					"response": []
+				}
+			],
+			"description": "Peticiones relacionadas con l@s asistentes."
+		},
+		{
+			"name": "Chats",
+			"item": [
+				{
+					"name": "Get chats",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/chat/646283fc77703da69cbe4b2b",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"chat",
+								"646283fc77703da69cbe4b2b"
+							]
+						},
+						"description": "Obtiene todos los chats."
+					},
+					"response": []
+				}
+			],
+			"description": "Peticiones relacionadas con los chats."
+		},
+		{
+			"name": "Notificaciones",
+			"item": [
+				{
+					"name": "Notificaciones Recibidas",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/notificacion/recibidas/645b1845205d674f41f3caf4/?tu=1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"notificacion",
+								"recibidas",
+								"645b1845205d674f41f3caf4",
+								""
+							],
+							"query": [
+								{
+									"key": "tu",
+									"value": "1"
+								}
+							]
+						},
+						"description": "Obtiene las notificaciones de un usuario."
+					},
+					"response": []
+				}
+			],
+			"description": "Peticiones relacionadas con las notificaciones."
+		}
+	]
+}

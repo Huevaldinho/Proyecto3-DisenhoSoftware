@@ -19,9 +19,11 @@ function PlanDeTrabajo(props) {
     e.preventDefault();
     navigate("/agregarActividad");
   };
-  const handleReturnMenuProfes = (e) => {
+  const handleRegresar = (e) => {
     e.preventDefault();
-    navigate("/menuProfesores");
+    if (storedUser.rol === "Asistente") navigate("/menuAsistentes");
+    else if (storedUser.rol === "Profesor") navigate("/menuProfesores");
+    else if (storedUser.rol === "Estudiante") navigate("/menuEstudiantes");
   };
   const handleReturnMenuAsistentes = (e) => {
     e.preventDefault();
@@ -139,9 +141,9 @@ function PlanDeTrabajo(props) {
         ) : (
           <button
             className="text-center w-full h-full"
-            onClick={handleReturnMenuProfes}
+            onClick={handleRegresar}
           >
-            Regresar al Menú de Profesores
+            Regresar
           </button>
         )}
       </div>

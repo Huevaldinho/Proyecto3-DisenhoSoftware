@@ -10,6 +10,7 @@ class MainController {
   adminEstudiantes = null;
   adminProfesores = null;
   adminArchivos = null;
+  adminChats = null;
   configuracion = null;
   //*Constructores
   constructor() {
@@ -158,6 +159,10 @@ class MainController {
   }
   async modificarInformacionEstudiante(dtoEstudiante) {
     return await this.adminEstudiantes.modificarInformacionEstudiante(dtoEstudiante);
+  }
+  //*Chats
+  async consultarChats() {
+    return await this.adminChats.consultarChats();
   }
 }
 

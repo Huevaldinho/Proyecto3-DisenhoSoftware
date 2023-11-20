@@ -68,3 +68,6 @@ app.listen(port,() => {
     console.log('Server on port '+port);
 });
 
+// Exporta el servidor
+//!Descomentar para poder hacer pruebas con Jest
+module.exports =app;

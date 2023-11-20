@@ -6,7 +6,8 @@
   "type": "module",
   "scripts": {
     "build": "babel index.js -d dist",
-    "start": "nodemon --exec babel-node index.js"
+    "start": "nodemon --exec babel-node index.js",
+    "test": "jest --config  jest.config.cjs"
   },
   "keywords": [],
   "author": "",
@@ -31,7 +32,9 @@
     "cors": "^2.8.5",
     "ejs": "^3.1.9",
     "fs": "^0.0.1-security",
+    "jest": "^29.7.0",
     "nodemon": "^2.0.22",
-    "read-excel-file": "^5.6.1"
+    "read-excel-file": "^5.6.1",
+    "supertest": "^6.3.3"
   }
 }
